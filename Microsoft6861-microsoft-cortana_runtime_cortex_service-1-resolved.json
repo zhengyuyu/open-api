@@ -1,5 +1,4 @@
 swagger: '2.0'
-host: substrate-sdf.office.com
 info:
   version: '1'
   title: Microsoft.Cortana.Runtime.CortexService
