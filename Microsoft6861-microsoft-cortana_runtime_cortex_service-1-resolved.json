@@ -1,0 +1,5092 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1",
+    "title": "Microsoft.Cortana.Runtime.CortexService"
+  },
+  "basePath": "/cortex/api/v1",
+  "tags": [
+    {
+      "name": "CortexService"
+    },
+    {
+      "name": "HealthMonitoringProbe"
+    },
+    {
+      "name": "LongTermMemory"
+    },
+    {
+      "name": "SemanticMachinesMemory"
+    },
+    {
+      "name": "ShortTermMemory"
+    }
+  ],
+  "consumes": [
+    "application/json",
+    "application/bond"
+  ],
+  "produces": [
+    "application/json",
+    "application/bond"
+  ],
+  "paths": {
+    "/cortex/{ExperienceId}/actions": {
+      "get": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "GetActions",
+        "parameters": [
+          {
+            "name": "ExperienceId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.ActionsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/language": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessLanguageObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.LanguageObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.UxAction"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/dialog": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessDialogObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.DialogObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.UxAction"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/notification": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessNotificationObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.NotificationObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.UxAction"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/skillcallback": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessChannelCallbackObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.SkillCallbackObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.UxAction"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/search": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessSearchObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.SearchObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.UxAction"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/startturn": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessStartTurnObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.StartTurnObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.InteractionContext"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/search2": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessSearchObservation2",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.SearchObservation2"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.UxAction"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/endturn": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessEndTurnObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.EndTurnObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.UxAction"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/callback": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessCallBackObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.CallBackObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.UxAction"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/warmup2": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessWarmupObservation2",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.WarmupObservation2"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.WarmupResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/supportedsemanticdomains": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessSupportedSemanticDomainsObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.SupportedSemanticDomainsObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.SupportedSemanticDomainsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/suggestion": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessSuggestionObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.SuggestionObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.UxAction"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/warmup": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessWarmupObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.WarmupObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.WarmupResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/searchwarmup": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessSearchWarmupObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.WarmupObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.WarmupResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/federatedsearch": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessFederatedSearchObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.SearchObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.UxAction"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/supportedsemanticdomains2": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessSupportedSemanticDomainsObservation2",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.SupportedSemanticDomainsObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.SupportedSemanticDomainsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cortex/observations/adaptiveaction": {
+      "post": {
+        "tags": [
+          "CortexService"
+        ],
+        "operationId": "ProcessAdaptiveActionObservation",
+        "parameters": [
+          {
+            "name": "X-UserIdentity",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Observation",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.AdaptiveActionObservation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.UxAction"
+            }
+          }
+        }
+      }
+    },
+    "/internal/system/monitor/cortexservice": {
+      "get": {
+        "tags": [
+          "HealthMonitoringProbe"
+        ],
+        "operationId": "GetHealth",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "headers": {
+              "X-AS-QualityOfResponse": {
+                "type": "string",
+                "description": ""
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.HealthProbeResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "headers": {
+              "X-AS-QualityOfResponse": {
+                "type": "string",
+                "description": ""
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.HealthProbeResponse"
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailable",
+            "headers": {
+              "X-AS-QualityOfResponse": {
+                "type": "string",
+                "description": ""
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CortexService.V1.HealthProbeResponse"
+            }
+          }
+        }
+      }
+    },
+    "/memory/longterm/read/tenant/{Tenant}": {
+      "get": {
+        "tags": [
+          "LongTermMemory"
+        ],
+        "operationId": "GetBatchAsync",
+        "parameters": [
+          {
+            "name": "X-MS-Correlation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-FD-Traffic",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Conversation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Tenant",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Ids",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": false
+            }
+          }
+        ],
+        "responses": {
+          "100": {
+            "description": "Continue",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "101": {
+            "description": "SwitchingProtocols",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "203": {
+            "description": "NonAuthoritativeInformation",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "205": {
+            "description": "ResetContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "206": {
+            "description": "PartialContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "300": {
+            "description": "MultipleChoices",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "301": {
+            "description": "MovedPermanently",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "302": {
+            "description": "Found",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "303": {
+            "description": "SeeOther",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "304": {
+            "description": "NotModified",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "305": {
+            "description": "UseProxy",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "306": {
+            "description": "Unused",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "307": {
+            "description": "TemporaryRedirect",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "402": {
+            "description": "PaymentRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "405": {
+            "description": "MethodNotAllowed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "406": {
+            "description": "NotAcceptable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "407": {
+            "description": "ProxyAuthenticationRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "408": {
+            "description": "RequestTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "411": {
+            "description": "LengthRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "412": {
+            "description": "PreconditionFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "413": {
+            "description": "RequestEntityTooLarge",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "414": {
+            "description": "RequestUriTooLong",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "415": {
+            "description": "UnsupportedMediaType",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "416": {
+            "description": "RequestedRangeNotSatisfiable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "417": {
+            "description": "ExpectationFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "426": {
+            "description": "UpgradeRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "501": {
+            "description": "NotImplemented",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "502": {
+            "description": "BadGateway",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "504": {
+            "description": "GatewayTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "505": {
+            "description": "HttpVersionNotSupported",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          }
+        }
+      }
+    },
+    "/memory/longterm/save/tenant/{Tenant}": {
+      "post": {
+        "tags": [
+          "LongTermMemory"
+        ],
+        "operationId": "SetBatchAsync",
+        "parameters": [
+          {
+            "name": "X-MS-Correlation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-FD-Traffic",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Conversation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Tenant",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Records",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MemoryApi.V1.Record"
+              },
+              "uniqueItems": false
+            }
+          }
+        ],
+        "responses": {
+          "100": {
+            "description": "Continue",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "101": {
+            "description": "SwitchingProtocols",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "203": {
+            "description": "NonAuthoritativeInformation",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "205": {
+            "description": "ResetContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "206": {
+            "description": "PartialContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "300": {
+            "description": "MultipleChoices",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "301": {
+            "description": "MovedPermanently",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "302": {
+            "description": "Found",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "303": {
+            "description": "SeeOther",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "304": {
+            "description": "NotModified",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "305": {
+            "description": "UseProxy",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "306": {
+            "description": "Unused",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "307": {
+            "description": "TemporaryRedirect",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "402": {
+            "description": "PaymentRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "405": {
+            "description": "MethodNotAllowed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "406": {
+            "description": "NotAcceptable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "407": {
+            "description": "ProxyAuthenticationRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "408": {
+            "description": "RequestTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "411": {
+            "description": "LengthRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "412": {
+            "description": "PreconditionFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "413": {
+            "description": "RequestEntityTooLarge",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "414": {
+            "description": "RequestUriTooLong",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "415": {
+            "description": "UnsupportedMediaType",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "416": {
+            "description": "RequestedRangeNotSatisfiable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "417": {
+            "description": "ExpectationFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "426": {
+            "description": "UpgradeRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "501": {
+            "description": "NotImplemented",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "502": {
+            "description": "BadGateway",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "504": {
+            "description": "GatewayTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "505": {
+            "description": "HttpVersionNotSupported",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          }
+        }
+      }
+    },
+    "/memory/longterm/delete/tenant/{Tenant}": {
+      "get": {
+        "tags": [
+          "LongTermMemory"
+        ],
+        "operationId": "DeleteBatchAsync",
+        "parameters": [
+          {
+            "name": "X-MS-Correlation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-FD-Traffic",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Conversation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Tenant",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IdETags",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MemoryApi.V1.IdETag"
+              },
+              "uniqueItems": false
+            }
+          }
+        ],
+        "responses": {
+          "100": {
+            "description": "Continue",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "101": {
+            "description": "SwitchingProtocols",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "203": {
+            "description": "NonAuthoritativeInformation",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "205": {
+            "description": "ResetContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "206": {
+            "description": "PartialContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "300": {
+            "description": "MultipleChoices",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "301": {
+            "description": "MovedPermanently",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "302": {
+            "description": "Found",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "303": {
+            "description": "SeeOther",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "304": {
+            "description": "NotModified",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "305": {
+            "description": "UseProxy",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "306": {
+            "description": "Unused",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "307": {
+            "description": "TemporaryRedirect",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "402": {
+            "description": "PaymentRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "405": {
+            "description": "MethodNotAllowed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "406": {
+            "description": "NotAcceptable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "407": {
+            "description": "ProxyAuthenticationRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "408": {
+            "description": "RequestTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "411": {
+            "description": "LengthRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "412": {
+            "description": "PreconditionFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "413": {
+            "description": "RequestEntityTooLarge",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "414": {
+            "description": "RequestUriTooLong",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "415": {
+            "description": "UnsupportedMediaType",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "416": {
+            "description": "RequestedRangeNotSatisfiable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "417": {
+            "description": "ExpectationFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "426": {
+            "description": "UpgradeRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "501": {
+            "description": "NotImplemented",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "502": {
+            "description": "BadGateway",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "504": {
+            "description": "GatewayTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "505": {
+            "description": "HttpVersionNotSupported",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          }
+        }
+      }
+    },
+    "/context/read/session/{SessionId}/record/{RecordId}": {
+      "get": {
+        "tags": [
+          "SemanticMachinesMemory"
+        ],
+        "operationId": "ContextServiceRead",
+        "parameters": [
+          {
+            "name": "X-MS-Correlation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "SessionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "RecordId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "100": {
+            "description": "Continue",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "101": {
+            "description": "SwitchingProtocols",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "203": {
+            "description": "NonAuthoritativeInformation",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "205": {
+            "description": "ResetContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "206": {
+            "description": "PartialContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "300": {
+            "description": "MultipleChoices",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "301": {
+            "description": "MovedPermanently",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "302": {
+            "description": "Found",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "303": {
+            "description": "SeeOther",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "304": {
+            "description": "NotModified",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "305": {
+            "description": "UseProxy",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "306": {
+            "description": "Unused",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "307": {
+            "description": "TemporaryRedirect",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "402": {
+            "description": "PaymentRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "405": {
+            "description": "MethodNotAllowed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "406": {
+            "description": "NotAcceptable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "407": {
+            "description": "ProxyAuthenticationRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "408": {
+            "description": "RequestTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "411": {
+            "description": "LengthRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "412": {
+            "description": "PreconditionFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "413": {
+            "description": "RequestEntityTooLarge",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "414": {
+            "description": "RequestUriTooLong",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "415": {
+            "description": "UnsupportedMediaType",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "416": {
+            "description": "RequestedRangeNotSatisfiable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "417": {
+            "description": "ExpectationFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "426": {
+            "description": "UpgradeRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "501": {
+            "description": "NotImplemented",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "502": {
+            "description": "BadGateway",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "504": {
+            "description": "GatewayTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          },
+          "505": {
+            "description": "HttpVersionNotSupported",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextReadResponse"
+            }
+          }
+        }
+      }
+    },
+    "/context/save/session/{SessionId}/record/{RecordId}": {
+      "post": {
+        "tags": [
+          "SemanticMachinesMemory"
+        ],
+        "operationId": "ContextServiceSave",
+        "parameters": [
+          {
+            "name": "X-MS-Correlation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "SessionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "RecordId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Data",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "100": {
+            "description": "Continue",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "101": {
+            "description": "SwitchingProtocols",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "203": {
+            "description": "NonAuthoritativeInformation",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "205": {
+            "description": "ResetContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "206": {
+            "description": "PartialContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "300": {
+            "description": "MultipleChoices",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "301": {
+            "description": "MovedPermanently",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "302": {
+            "description": "Found",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "303": {
+            "description": "SeeOther",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "304": {
+            "description": "NotModified",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "305": {
+            "description": "UseProxy",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "306": {
+            "description": "Unused",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "307": {
+            "description": "TemporaryRedirect",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "402": {
+            "description": "PaymentRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "405": {
+            "description": "MethodNotAllowed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "406": {
+            "description": "NotAcceptable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "407": {
+            "description": "ProxyAuthenticationRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "408": {
+            "description": "RequestTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "411": {
+            "description": "LengthRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "412": {
+            "description": "PreconditionFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "413": {
+            "description": "RequestEntityTooLarge",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "414": {
+            "description": "RequestUriTooLong",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "415": {
+            "description": "UnsupportedMediaType",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "416": {
+            "description": "RequestedRangeNotSatisfiable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "417": {
+            "description": "ExpectationFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "426": {
+            "description": "UpgradeRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "501": {
+            "description": "NotImplemented",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "502": {
+            "description": "BadGateway",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "504": {
+            "description": "GatewayTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          },
+          "505": {
+            "description": "HttpVersionNotSupported",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextSaveResponse"
+            }
+          }
+        }
+      }
+    },
+    "/context/list/session/{SessionId}": {
+      "get": {
+        "tags": [
+          "SemanticMachinesMemory"
+        ],
+        "operationId": "ContextServiceList",
+        "parameters": [
+          {
+            "name": "X-MS-Correlation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "SessionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "100": {
+            "description": "Continue",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "101": {
+            "description": "SwitchingProtocols",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "203": {
+            "description": "NonAuthoritativeInformation",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "205": {
+            "description": "ResetContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "206": {
+            "description": "PartialContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "300": {
+            "description": "MultipleChoices",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "301": {
+            "description": "MovedPermanently",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "302": {
+            "description": "Found",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "303": {
+            "description": "SeeOther",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "304": {
+            "description": "NotModified",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "305": {
+            "description": "UseProxy",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "306": {
+            "description": "Unused",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "307": {
+            "description": "TemporaryRedirect",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "402": {
+            "description": "PaymentRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "405": {
+            "description": "MethodNotAllowed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "406": {
+            "description": "NotAcceptable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "407": {
+            "description": "ProxyAuthenticationRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "408": {
+            "description": "RequestTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "411": {
+            "description": "LengthRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "412": {
+            "description": "PreconditionFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "413": {
+            "description": "RequestEntityTooLarge",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "414": {
+            "description": "RequestUriTooLong",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "415": {
+            "description": "UnsupportedMediaType",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "416": {
+            "description": "RequestedRangeNotSatisfiable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "417": {
+            "description": "ExpectationFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "426": {
+            "description": "UpgradeRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "501": {
+            "description": "NotImplemented",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "502": {
+            "description": "BadGateway",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "504": {
+            "description": "GatewayTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          },
+          "505": {
+            "description": "HttpVersionNotSupported",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListResponse"
+            }
+          }
+        }
+      }
+    },
+    "/context/read/session/{SessionId}/records": {
+      "get": {
+        "tags": [
+          "SemanticMachinesMemory"
+        ],
+        "operationId": "ContextServiceListRecord",
+        "parameters": [
+          {
+            "name": "X-MS-Correlation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "SessionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "100": {
+            "description": "Continue",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "101": {
+            "description": "SwitchingProtocols",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "203": {
+            "description": "NonAuthoritativeInformation",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "205": {
+            "description": "ResetContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "206": {
+            "description": "PartialContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "300": {
+            "description": "MultipleChoices",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "301": {
+            "description": "MovedPermanently",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "302": {
+            "description": "Found",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "303": {
+            "description": "SeeOther",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "304": {
+            "description": "NotModified",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "305": {
+            "description": "UseProxy",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "306": {
+            "description": "Unused",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "307": {
+            "description": "TemporaryRedirect",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "402": {
+            "description": "PaymentRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "405": {
+            "description": "MethodNotAllowed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "406": {
+            "description": "NotAcceptable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "407": {
+            "description": "ProxyAuthenticationRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "408": {
+            "description": "RequestTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "411": {
+            "description": "LengthRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "412": {
+            "description": "PreconditionFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "413": {
+            "description": "RequestEntityTooLarge",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "414": {
+            "description": "RequestUriTooLong",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "415": {
+            "description": "UnsupportedMediaType",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "416": {
+            "description": "RequestedRangeNotSatisfiable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "417": {
+            "description": "ExpectationFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "426": {
+            "description": "UpgradeRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "501": {
+            "description": "NotImplemented",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "502": {
+            "description": "BadGateway",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "504": {
+            "description": "GatewayTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          },
+          "505": {
+            "description": "HttpVersionNotSupported",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ContextListRecordResponse"
+            }
+          }
+        }
+      }
+    },
+    "/memory/shortterm/read/tenant/{Tenant}": {
+      "get": {
+        "tags": [
+          "ShortTermMemory"
+        ],
+        "operationId": "GetBatchAsync",
+        "parameters": [
+          {
+            "name": "X-MS-Correlation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-FD-Traffic",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Conversation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Tenant",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Ids",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": false
+            }
+          }
+        ],
+        "responses": {
+          "100": {
+            "description": "Continue",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "101": {
+            "description": "SwitchingProtocols",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "203": {
+            "description": "NonAuthoritativeInformation",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "205": {
+            "description": "ResetContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "206": {
+            "description": "PartialContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "300": {
+            "description": "MultipleChoices",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "301": {
+            "description": "MovedPermanently",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "302": {
+            "description": "Found",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "303": {
+            "description": "SeeOther",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "304": {
+            "description": "NotModified",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "305": {
+            "description": "UseProxy",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "306": {
+            "description": "Unused",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "307": {
+            "description": "TemporaryRedirect",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "402": {
+            "description": "PaymentRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "405": {
+            "description": "MethodNotAllowed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "406": {
+            "description": "NotAcceptable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "407": {
+            "description": "ProxyAuthenticationRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "408": {
+            "description": "RequestTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "411": {
+            "description": "LengthRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "412": {
+            "description": "PreconditionFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "413": {
+            "description": "RequestEntityTooLarge",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "414": {
+            "description": "RequestUriTooLong",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "415": {
+            "description": "UnsupportedMediaType",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "416": {
+            "description": "RequestedRangeNotSatisfiable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "417": {
+            "description": "ExpectationFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "426": {
+            "description": "UpgradeRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "501": {
+            "description": "NotImplemented",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "502": {
+            "description": "BadGateway",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "504": {
+            "description": "GatewayTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          },
+          "505": {
+            "description": "HttpVersionNotSupported",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.ReadResponse"
+            }
+          }
+        }
+      }
+    },
+    "/memory/shortterm/save/tenant/{Tenant}": {
+      "post": {
+        "tags": [
+          "ShortTermMemory"
+        ],
+        "operationId": "SetBatchAsync",
+        "parameters": [
+          {
+            "name": "X-MS-Correlation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-FD-Traffic",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Conversation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Tenant",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Records",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MemoryApi.V1.Record"
+              },
+              "uniqueItems": false
+            }
+          }
+        ],
+        "responses": {
+          "100": {
+            "description": "Continue",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "101": {
+            "description": "SwitchingProtocols",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "203": {
+            "description": "NonAuthoritativeInformation",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "205": {
+            "description": "ResetContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "206": {
+            "description": "PartialContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "300": {
+            "description": "MultipleChoices",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "301": {
+            "description": "MovedPermanently",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "302": {
+            "description": "Found",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "303": {
+            "description": "SeeOther",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "304": {
+            "description": "NotModified",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "305": {
+            "description": "UseProxy",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "306": {
+            "description": "Unused",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "307": {
+            "description": "TemporaryRedirect",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "402": {
+            "description": "PaymentRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "405": {
+            "description": "MethodNotAllowed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "406": {
+            "description": "NotAcceptable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "407": {
+            "description": "ProxyAuthenticationRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "408": {
+            "description": "RequestTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "411": {
+            "description": "LengthRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "412": {
+            "description": "PreconditionFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "413": {
+            "description": "RequestEntityTooLarge",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "414": {
+            "description": "RequestUriTooLong",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "415": {
+            "description": "UnsupportedMediaType",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "416": {
+            "description": "RequestedRangeNotSatisfiable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "417": {
+            "description": "ExpectationFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "426": {
+            "description": "UpgradeRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "501": {
+            "description": "NotImplemented",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "502": {
+            "description": "BadGateway",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "504": {
+            "description": "GatewayTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          },
+          "505": {
+            "description": "HttpVersionNotSupported",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.SaveResponse"
+            }
+          }
+        }
+      }
+    },
+    "/memory/shortterm/delete/tenant/{Tenant}": {
+      "post": {
+        "tags": [
+          "ShortTermMemory"
+        ],
+        "operationId": "DeleteBatchAsync",
+        "parameters": [
+          {
+            "name": "X-MS-Correlation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-FD-Traffic",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Conversation-Id",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Tenant",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IdETags",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MemoryApi.V1.IdETag"
+              },
+              "uniqueItems": false
+            }
+          }
+        ],
+        "responses": {
+          "100": {
+            "description": "Continue",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "101": {
+            "description": "SwitchingProtocols",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "203": {
+            "description": "NonAuthoritativeInformation",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "205": {
+            "description": "ResetContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "206": {
+            "description": "PartialContent",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "300": {
+            "description": "MultipleChoices",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "301": {
+            "description": "MovedPermanently",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "302": {
+            "description": "Found",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "303": {
+            "description": "SeeOther",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "304": {
+            "description": "NotModified",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "305": {
+            "description": "UseProxy",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "306": {
+            "description": "Unused",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "307": {
+            "description": "TemporaryRedirect",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "402": {
+            "description": "PaymentRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "405": {
+            "description": "MethodNotAllowed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "406": {
+            "description": "NotAcceptable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "407": {
+            "description": "ProxyAuthenticationRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "408": {
+            "description": "RequestTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "410": {
+            "description": "Gone",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "411": {
+            "description": "LengthRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "412": {
+            "description": "PreconditionFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "413": {
+            "description": "RequestEntityTooLarge",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "414": {
+            "description": "RequestUriTooLong",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "415": {
+            "description": "UnsupportedMediaType",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "416": {
+            "description": "RequestedRangeNotSatisfiable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "417": {
+            "description": "ExpectationFailed",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "426": {
+            "description": "UpgradeRequired",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "501": {
+            "description": "NotImplemented",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "502": {
+            "description": "BadGateway",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailable",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "504": {
+            "description": "GatewayTimeout",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          },
+          "505": {
+            "description": "HttpVersionNotSupported",
+            "schema": {
+              "$ref": "#/definitions/MemoryApi.V1.DeleteResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CortexService.V1.LanguageObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "speechQuery": {
+              "$ref": "#/definitions/CortexService.V1.SpeechQuery"
+            },
+            "textInput": {
+              "type": "string"
+            },
+            "languageUnderstandingScenario": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "CortexService.V1.SpeechQuery": {
+      "type": "object",
+      "properties": {
+        "recognitionStatus": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Intermediate",
+            "Success",
+            "NoMatch",
+            "InitialSilenceTimeout",
+            "BabbleTimeout",
+            "HotWordMaximumTime",
+            "Cancelled",
+            "Error"
+          ]
+        },
+        "speechLanguage": {
+          "type": "string"
+        },
+        "recognizedPhrases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CortexService.V1.RecognizedPhrase"
+          }
+        },
+        "sessionGrammarCallInfo": {
+          "$ref": "#/definitions/CortexService.V1.SessionGrammarCallInfo"
+        }
+      }
+    },
+    "CortexService.V1.RecognizedPhrase": {
+      "type": "object",
+      "properties": {
+        "lexicalForm": {
+          "type": "string"
+        },
+        "inverseTextNormalizationResults": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "displayText": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string",
+          "default": "None",
+          "enum": [
+            "None",
+            "Low",
+            "Normal",
+            "High"
+          ]
+        },
+        "sREngineConfidence": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "CortexService.V1.SessionGrammarCallInfo": {
+      "type": "object",
+      "properties": {
+        "callbackUrl": {
+          "type": "string"
+        },
+        "speechSessionToken": {
+          "type": "string"
+        }
+      }
+    },
+    "CortexService.V1.Observation": {
+      "type": "object",
+      "properties": {
+        "observationContext": {
+          "$ref": "#/definitions/CortexService.V1.ObservationContext"
+        }
+      }
+    },
+    "CortexService.V1.ObservationContext": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string"
+        },
+        "traceId": {
+          "type": "string"
+        },
+        "augmentations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "variants": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "locale": {
+          "type": "string"
+        },
+        "userAgent": {
+          "type": "string"
+        },
+        "userIpAddress": {
+          "type": "string"
+        },
+        "multiUserContext": {
+          "$ref": "#/definitions/CortexService.V1.MultiUserContext"
+        },
+        "isNewConversation": {
+          "type": "boolean"
+        },
+        "deviceInfo": {
+          "$ref": "#/definitions/CortexService.V1.DeviceInfo"
+        },
+        "formCode": {
+          "type": "string"
+        },
+        "availableCapabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "deviceID": {
+          "type": "string"
+        },
+        "requestContextData": {
+          "type": "string"
+        },
+        "implicitLocationLatitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "implicitLocationLongitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "eventId": {
+          "type": "string"
+        },
+        "parentEventId": {
+          "type": "string"
+        },
+        "debugContext": {
+          "$ref": "#/definitions/CortexService.V1.DebugContext"
+        }
+      }
+    },
+    "CortexService.V1.MultiUserContext": {
+      "type": "object",
+      "properties": {
+        "selectedUser": {
+          "$ref": "#/definitions/CortexService.V1.User"
+        },
+        "deviceOwner": {
+          "$ref": "#/definitions/CortexService.V1.User"
+        },
+        "speakingUser": {
+          "$ref": "#/definitions/CortexService.V1.User"
+        },
+        "multipleUsersEnrolled": {
+          "type": "boolean"
+        },
+        "speakingUserChanged": {
+          "type": "boolean"
+        },
+        "numberUsersEnrolled": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "CortexService.V1.User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/CortexService.V1.UserId"
+        },
+        "name": {
+          "type": "string"
+        },
+        "anid": {
+          "type": "string"
+        },
+        "token": {
+          "$ref": "#/definitions/CortexService.V1.UserToken"
+        }
+      }
+    },
+    "CortexService.V1.UserId": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "default": "Opid",
+          "enum": [
+            "Opid"
+          ]
+        }
+      }
+    },
+    "CortexService.V1.UserToken": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "default": "OpidContainer",
+          "enum": [
+            "None",
+            "OpidContainer",
+            "BingIdCarrier",
+            "BingId"
+          ]
+        }
+      }
+    },
+    "CortexService.V1.DeviceInfo": {
+      "type": "object",
+      "properties": {
+        "lockState": {
+          "type": "string",
+          "default": "Invalid",
+          "enum": [
+            "Invalid",
+            "Unlocked",
+            "PinLocked",
+            "Locked"
+          ]
+        },
+        "rafDeviceMode": {
+          "type": "string",
+          "default": "Fallback",
+          "enum": [
+            "Fallback",
+            "AudioOnly",
+            "Distracted",
+            "FullAttention",
+            "LimitedDisplay",
+            "Bot"
+          ]
+        },
+        "isDrivingModeActive": {
+          "type": "boolean"
+        },
+        "isFamily": {
+          "type": "boolean"
+        }
+      }
+    },
+    "CortexService.V1.DebugContext": {
+      "type": "object",
+      "properties": {
+        "dependentServicesUrlOverrides": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "CortexService.V1.AdaptiveActionObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "targetProviderId": {
+              "type": "string"
+            },
+            "adaptiveActionValue": {
+              "type": "string"
+            },
+            "itemId": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "CortexService.V1.DialogObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "semanticFrame": {
+              "$ref": "#/definitions/CortexService.V1.SemanticFrame"
+            },
+            "callbackCookie": {
+              "type": "string"
+            },
+            "turnType": {
+              "type": "string",
+              "default": "Unknown",
+              "enum": [
+                "Unknown",
+                "Primary",
+                "Resolution",
+                "PrimarySingleTask"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "CortexService.V1.SemanticFrame": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "type": "string"
+        },
+        "intent": {
+          "type": "string"
+        },
+        "slots": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "CortexService.V1.NotificationObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "semanticFrame": {
+              "$ref": "#/definitions/CortexService.V1.SemanticFrame"
+            }
+          }
+        }
+      ]
+    },
+    "CortexService.V1.SearchObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "queryRepresentation": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "CortexService.V1.SkillCallbackObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "callbackMsg": {
+              "type": "string"
+            },
+            "botAppId": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "CortexService.V1.SuggestionObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "CortexService.V1.SupportedSemanticDomainsObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "CortexService.V1.WarmupObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "CortexService.V1.StartTurnObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation2"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "CortexService.V1.Observation2": {
+      "type": "object",
+      "properties": {
+        "observationContext": {
+          "$ref": "#/definitions/CortexService.V1.ObservationContext2"
+        }
+      }
+    },
+    "CortexService.V1.ObservationContext2": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string"
+        },
+        "traceId": {
+          "type": "string"
+        },
+        "variants": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "locale": {
+          "type": "string"
+        },
+        "userAgent": {
+          "type": "string"
+        },
+        "isNewConversation": {
+          "type": "boolean"
+        },
+        "deviceInfo": {
+          "$ref": "#/definitions/CortexService.V1.DeviceInfo"
+        },
+        "formCode": {
+          "type": "string"
+        },
+        "availableCapabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "deviceID": {
+          "type": "string"
+        },
+        "requestContextData": {
+          "type": "string"
+        },
+        "eventId": {
+          "type": "string"
+        },
+        "parentEventId": {
+          "type": "string"
+        },
+        "debugContext": {
+          "$ref": "#/definitions/CortexService.V1.DebugContext"
+        }
+      }
+    },
+    "CortexService.V1.CallBackObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation2"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "CortexService.V1.EndTurnObservation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation2"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "shouldContinue": {
+              "type": "boolean"
+            },
+            "skillResponse": {
+              "type": "string"
+            },
+            "searchResponse": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "CortexService.V1.SearchObservation2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation2"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "interactionContext": {
+              "$ref": "#/definitions/CortexService.V1.InteractionContext"
+            },
+            "queryRepresentation": {
+              "type": "string"
+            },
+            "searchContext": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "CortexService.V1.InteractionContext": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "type": "string"
+        }
+      }
+    },
+    "CortexService.V1.WarmupObservation2": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Observation2"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "CortexService.V1.ActionsResponse": {
+      "type": "object",
+      "properties": {
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CortexService.V1.Action"
+          }
+        }
+      }
+    },
+    "CortexService.V1.Action": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "CortexService.V1.TextResponseAction": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CortexService.V1.Action"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "CortexService.V1.UxAction": {
+      "type": "object",
+      "properties": {
+        "aDOContainer": {
+          "$ref": "#/definitions/CortexService.V1.ADOContainer"
+        },
+        "actionData": {
+          "$ref": "#/definitions/CortexService.V1.ActionData"
+        },
+        "lGResponse": {
+          "$ref": "#/definitions/CortexService.V1.LGResponse"
+        },
+        "eventId": {
+          "type": "string"
+        },
+        "parentEventId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Success",
+            "Error",
+            "Ignored",
+            "NoSkillFound",
+            "SkillError",
+            "InvalidRequest",
+            "QASError",
+            "FPBFError"
+          ]
+        },
+        "executedSkillName": {
+          "type": "string"
+        },
+        "displayData": {
+          "$ref": "#/definitions/CortexService.V1.DisplayData"
+        },
+        "skillOutcomeType": {
+          "type": "string",
+          "enum": [
+            "None",
+            "SilenceTimeout",
+            "Canceled",
+            "NoRecognition",
+            "IntentNotComplete",
+            "IntentNotSupported"
+          ]
+        },
+        "executedSkillId": {
+          "type": "string"
+        },
+        "systemErrorMessage": {
+          "type": "string"
+        }
+      }
+    },
+    "CortexService.V1.ADOContainer": {
+      "type": "object",
+      "properties": {
+        "serviceName": {
+          "type": "string"
+        },
+        "scenarioName": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string",
+          "format": "byte",
+          "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+        },
+        "resultType": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Unknown",
+            "SpaResult",
+            "SpaResultList",
+            "ClientResolution",
+            "ResultV2"
+          ]
+        },
+        "dGI": {
+          "type": "string"
+        },
+        "adaptiveUX": {
+          "type": "string"
+        },
+        "taskLifeTimeGUID": {
+          "type": "string"
+        },
+        "parentTaskLifeTimeGUID": {
+          "type": "string"
+        },
+        "taskFrameGUID": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "intent": {
+          "type": "string"
+        },
+        "turnIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "turnGUID": {
+          "type": "string"
+        },
+        "propertyBag": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "CortexService.V1.ActionData": {
+      "type": "object",
+      "properties": {
+        "actionType": {
+          "type": "string",
+          "enum": [
+            "PassThroughAction",
+            "ShowUrlContent",
+            "InvokeActionUri",
+            "None",
+            "DialogSPA"
+          ]
+        },
+        "systemAction": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "default": "Static",
+          "enum": [
+            "Unknown",
+            "Static",
+            "Dynamic"
+          ]
+        },
+        "actionUri": {
+          "type": "string"
+        },
+        "projectedAPIActions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "finalActionMetaData": {
+          "$ref": "#/definitions/CortexService.V1.FinalActionMetaData"
+        },
+        "asyncResolutionMetaData": {
+          "$ref": "#/definitions/CortexService.V1.AsyncResolutionMetaData"
+        },
+        "cortanaApiActions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "uxMetadata": {
+          "$ref": "#/definitions/CortexService.V1.UxMetadata"
+        },
+        "adaptiveActionResponse": {
+          "$ref": "#/definitions/CortexService.V1.AdaptiveActionResponse"
+        }
+      }
+    },
+    "CortexService.V1.FinalActionMetaData": {
+      "type": "object",
+      "properties": {
+        "dismissAppTimeout": {
+          "type": "integer",
+          "format": "int32",
+          "default": 0
+        },
+        "disableScreenshot": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "CortexService.V1.AsyncResolutionMetaData": {
+      "type": "object",
+      "properties": {
+        "estimatedTimeToCompleteInMs": {
+          "type": "integer",
+          "format": "int32",
+          "default": 0
+        },
+        "forceReadSsml": {
+          "type": "boolean",
+          "default": false
+        },
+        "historyViewMetaData": {
+          "$ref": "#/definitions/CortexService.V1.HistoryViewMetaData"
+        }
+      }
+    },
+    "CortexService.V1.HistoryViewMetaData": {
+      "type": "object",
+      "properties": {
+        "stackBasedHistoryView": {
+          "type": "boolean",
+          "default": false
+        },
+        "hiddenInHistoryView": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "CortexService.V1.UxMetadata": {
+      "type": "object",
+      "properties": {
+        "speechMetadata": {
+          "$ref": "#/definitions/CortexService.V1.SpeechMetadata"
+        },
+        "displayMetadata": {
+          "$ref": "#/definitions/CortexService.V1.DisplayMetadata"
+        }
+      }
+    },
+    "CortexService.V1.SpeechMetadata": {
+      "type": "object",
+      "properties": {
+        "expectedSpeechType": {
+          "type": "string",
+          "default": "Default",
+          "enum": [
+            "Default",
+            "Dictation",
+            "Query",
+            "None"
+          ]
+        },
+        "initialSilenceTimeoutInMilliseconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "finalSilenceTimeoutInMilliseconds": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "CortexService.V1.DisplayMetadata": {
+      "type": "object",
+      "properties": {
+        "timeout": {
+          "type": "string",
+          "default": "Default",
+          "enum": [
+            "Default",
+            "ShortTimeout",
+            "LongTimeout",
+            "NoDelay"
+          ]
+        }
+      }
+    },
+    "CortexService.V1.AdaptiveActionResponse": {
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "CortexService.V1.LGResponse": {
+      "type": "object",
+      "properties": {
+        "spokenText": {
+          "type": "string"
+        },
+        "spokenSsml": {
+          "type": "string"
+        },
+        "displayText": {
+          "type": "string"
+        },
+        "autoListenState": {
+          "type": "string"
+        },
+        "animationState": {
+          "type": "string"
+        },
+        "containsSensitiveInformation": {
+          "type": "boolean",
+          "default": false
+        },
+        "postSsmlOperation": {
+          "type": "string"
+        },
+        "ssmlId": {
+          "type": "string"
+        },
+        "dialogState": {
+          "type": "string"
+        }
+      }
+    },
+    "CortexService.V1.DisplayData": {
+      "type": "object",
+      "properties": {
+        "suggestions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CortexService.V1.Suggestion"
+          }
+        }
+      }
+    },
+    "CortexService.V1.Suggestion": {
+      "type": "object",
+      "properties": {
+        "suggestionId": {
+          "type": "string"
+        },
+        "displayText": {
+          "type": "string"
+        },
+        "interactionType": {
+          "type": "string",
+          "default": "RawQuery",
+          "enum": [
+            "RawQuery"
+          ]
+        },
+        "query": {
+          "type": "string"
+        }
+      }
+    },
+    "CortexService.V1.WarmupResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "Success",
+            "Error",
+            "Ignored",
+            "NoSkillFound",
+            "SkillError",
+            "InvalidRequest",
+            "QASError",
+            "FPBFError"
+          ]
+        }
+      }
+    },
+    "CortexService.V1.SupportedSemanticDomainsResponse": {
+      "type": "object",
+      "properties": {
+        "domains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "domainIntentMap": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "skillTriggerPhrasesMap": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "CortexService.V1.HealthProbeResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "Ok",
+            "NotFound",
+            "ServiceUnavailable"
+          ]
+        },
+        "qualityOfResponse": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "MemoryApi.V1.Record": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MemoryApi.V1.IdETag"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "MemoryApi.V1.IdETag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "eTag": {
+          "type": "string"
+        }
+      }
+    },
+    "MemoryApi.V1.IdResult": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MemoryApi.V1.IdETag"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "statusCode": {
+              "type": "string",
+              "enum": [
+                "Continue",
+                "SwitchingProtocols",
+                "OK",
+                "Created",
+                "Accepted",
+                "NonAuthoritativeInformation",
+                "NoContent",
+                "ResetContent",
+                "PartialContent",
+                "MultipleChoices",
+                "MovedPermanently",
+                "Found",
+                "SeeOther",
+                "NotModified",
+                "UseProxy",
+                "Unused",
+                "TemporaryRedirect",
+                "BadRequest",
+                "Unauthorized",
+                "PaymentRequired",
+                "Forbidden",
+                "NotFound",
+                "MethodNotAllowed",
+                "NotAcceptable",
+                "ProxyAuthenticationRequired",
+                "RequestTimeout",
+                "Conflict",
+                "Gone",
+                "LengthRequired",
+                "PreconditionFailed",
+                "RequestEntityTooLarge",
+                "RequestUriTooLong",
+                "UnsupportedMediaType",
+                "RequestedRangeNotSatisfiable",
+                "ExpectationFailed",
+                "UpgradeRequired",
+                "InternalServerError",
+                "NotImplemented",
+                "BadGateway",
+                "ServiceUnavailable",
+                "GatewayTimeout",
+                "HttpVersionNotSupported"
+              ]
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "MemoryApi.V1.RecordResult": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MemoryApi.V1.IdResult"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "record": {
+              "$ref": "#/definitions/MemoryApi.V1.Record"
+            }
+          }
+        }
+      ]
+    },
+    "MemoryApi.V1.ReadResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MemoryApi.V1.BaseResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MemoryApi.V1.RecordResult"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "MemoryApi.V1.BaseResponse": {
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "Continue",
+            "SwitchingProtocols",
+            "OK",
+            "Created",
+            "Accepted",
+            "NonAuthoritativeInformation",
+            "NoContent",
+            "ResetContent",
+            "PartialContent",
+            "MultipleChoices",
+            "MovedPermanently",
+            "Found",
+            "SeeOther",
+            "NotModified",
+            "UseProxy",
+            "Unused",
+            "TemporaryRedirect",
+            "BadRequest",
+            "Unauthorized",
+            "PaymentRequired",
+            "Forbidden",
+            "NotFound",
+            "MethodNotAllowed",
+            "NotAcceptable",
+            "ProxyAuthenticationRequired",
+            "RequestTimeout",
+            "Conflict",
+            "Gone",
+            "LengthRequired",
+            "PreconditionFailed",
+            "RequestEntityTooLarge",
+            "RequestUriTooLong",
+            "UnsupportedMediaType",
+            "RequestedRangeNotSatisfiable",
+            "ExpectationFailed",
+            "UpgradeRequired",
+            "InternalServerError",
+            "NotImplemented",
+            "BadGateway",
+            "ServiceUnavailable",
+            "GatewayTimeout",
+            "HttpVersionNotSupported"
+          ]
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "MemoryApi.V1.SaveResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MemoryApi.V1.BaseResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MemoryApi.V1.IdResult"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "MemoryApi.V1.DeleteResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MemoryApi.V1.BaseResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "MemoryApi.V1.ContextReadResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "Continue",
+            "SwitchingProtocols",
+            "OK",
+            "Created",
+            "Accepted",
+            "NonAuthoritativeInformation",
+            "NoContent",
+            "ResetContent",
+            "PartialContent",
+            "MultipleChoices",
+            "MovedPermanently",
+            "Found",
+            "SeeOther",
+            "NotModified",
+            "UseProxy",
+            "Unused",
+            "TemporaryRedirect",
+            "BadRequest",
+            "Unauthorized",
+            "PaymentRequired",
+            "Forbidden",
+            "NotFound",
+            "MethodNotAllowed",
+            "NotAcceptable",
+            "ProxyAuthenticationRequired",
+            "RequestTimeout",
+            "Conflict",
+            "Gone",
+            "LengthRequired",
+            "PreconditionFailed",
+            "RequestEntityTooLarge",
+            "RequestUriTooLong",
+            "UnsupportedMediaType",
+            "RequestedRangeNotSatisfiable",
+            "ExpectationFailed",
+            "UpgradeRequired",
+            "InternalServerError",
+            "NotImplemented",
+            "BadGateway",
+            "ServiceUnavailable",
+            "GatewayTimeout",
+            "HttpVersionNotSupported"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "MemoryApi.V1.ContextSaveResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "Continue",
+            "SwitchingProtocols",
+            "OK",
+            "Created",
+            "Accepted",
+            "NonAuthoritativeInformation",
+            "NoContent",
+            "ResetContent",
+            "PartialContent",
+            "MultipleChoices",
+            "MovedPermanently",
+            "Found",
+            "SeeOther",
+            "NotModified",
+            "UseProxy",
+            "Unused",
+            "TemporaryRedirect",
+            "BadRequest",
+            "Unauthorized",
+            "PaymentRequired",
+            "Forbidden",
+            "NotFound",
+            "MethodNotAllowed",
+            "NotAcceptable",
+            "ProxyAuthenticationRequired",
+            "RequestTimeout",
+            "Conflict",
+            "Gone",
+            "LengthRequired",
+            "PreconditionFailed",
+            "RequestEntityTooLarge",
+            "RequestUriTooLong",
+            "UnsupportedMediaType",
+            "RequestedRangeNotSatisfiable",
+            "ExpectationFailed",
+            "UpgradeRequired",
+            "InternalServerError",
+            "NotImplemented",
+            "BadGateway",
+            "ServiceUnavailable",
+            "GatewayTimeout",
+            "HttpVersionNotSupported"
+          ]
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "MemoryApi.V1.ContextListResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "Continue",
+            "SwitchingProtocols",
+            "OK",
+            "Created",
+            "Accepted",
+            "NonAuthoritativeInformation",
+            "NoContent",
+            "ResetContent",
+            "PartialContent",
+            "MultipleChoices",
+            "MovedPermanently",
+            "Found",
+            "SeeOther",
+            "NotModified",
+            "UseProxy",
+            "Unused",
+            "TemporaryRedirect",
+            "BadRequest",
+            "Unauthorized",
+            "PaymentRequired",
+            "Forbidden",
+            "NotFound",
+            "MethodNotAllowed",
+            "NotAcceptable",
+            "ProxyAuthenticationRequired",
+            "RequestTimeout",
+            "Conflict",
+            "Gone",
+            "LengthRequired",
+            "PreconditionFailed",
+            "RequestEntityTooLarge",
+            "RequestUriTooLong",
+            "UnsupportedMediaType",
+            "RequestedRangeNotSatisfiable",
+            "ExpectationFailed",
+            "UpgradeRequired",
+            "InternalServerError",
+            "NotImplemented",
+            "BadGateway",
+            "ServiceUnavailable",
+            "GatewayTimeout",
+            "HttpVersionNotSupported"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "recordIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "MemoryApi.V1.ContextListRecordResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "Continue",
+            "SwitchingProtocols",
+            "OK",
+            "Created",
+            "Accepted",
+            "NonAuthoritativeInformation",
+            "NoContent",
+            "ResetContent",
+            "PartialContent",
+            "MultipleChoices",
+            "MovedPermanently",
+            "Found",
+            "SeeOther",
+            "NotModified",
+            "UseProxy",
+            "Unused",
+            "TemporaryRedirect",
+            "BadRequest",
+            "Unauthorized",
+            "PaymentRequired",
+            "Forbidden",
+            "NotFound",
+            "MethodNotAllowed",
+            "NotAcceptable",
+            "ProxyAuthenticationRequired",
+            "RequestTimeout",
+            "Conflict",
+            "Gone",
+            "LengthRequired",
+            "PreconditionFailed",
+            "RequestEntityTooLarge",
+            "RequestUriTooLong",
+            "UnsupportedMediaType",
+            "RequestedRangeNotSatisfiable",
+            "ExpectationFailed",
+            "UpgradeRequired",
+            "InternalServerError",
+            "NotImplemented",
+            "BadGateway",
+            "ServiceUnavailable",
+            "GatewayTimeout",
+            "HttpVersionNotSupported"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MemoryApi.V1.Record"
+          }
+        }
+      }
+    }
+  }
+}
